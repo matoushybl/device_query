@@ -73,7 +73,7 @@ impl DeviceState {
     pub fn query_keymap(&self) -> Vec<Keycode> {
         let mut keycodes = vec![];
         unsafe {
-            let keymap: *mut i8 = [0; 32].as_mut_ptr();
+            let keymap: *mut u8 = [0; 32].as_mut_ptr();
             xlib::XQueryKeymap(self.display, keymap);
             for (ix, byte) in
                 slice::from_raw_parts(keymap, 32).iter().enumerate()
